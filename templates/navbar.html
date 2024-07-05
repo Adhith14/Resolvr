@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg mynav ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Annyan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav">
+
+            {% if 'user_id' in session %}
+
+                {% if user.is_admin %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('allgrievances')}}">Grievance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-danger" href="{{url_for('logout')}}">Logout</a>
+                </li>    
+
+                <div class="profile-picture" style="width: 40px; height:40px">
+                    <img src="https://api.dicebear.com/9.x/initials/svg?seed={{user.username}}&radius=20" alt="icon">
+                  </div>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('grievance')}}">Grievance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-danger" style="margin-right: 10px;" href="{{url_for('logout')}}">Logout</a>
+                </li>    
+
+                <div class="profile-picture" style="width: 40px; height:40px">
+                    <img src="https://api.dicebear.com/9.x/initials/svg?seed={{user.username}}&radius=20" alt="icon">
+                  </div>
+                    
+                {% endif %}
+               
+
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('register')}}">Register</a>
+                </li>
+                
+            {% endif %}
+ 
+
+          
+        </ul>
+      </div>
+    </div>
+  </nav>

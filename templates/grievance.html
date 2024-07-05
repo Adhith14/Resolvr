@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Grievance
+{% endblock %}
+
+{% block content %}
+    <div class="griev">
+        <h1>Grievance</h1>
+        <a href="{{ url_for('add_grievance') }}" class="btn btn-success">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            Add Grievance
+        </a>
+
+        <h2 class="">Current Grievances</h2>
+        <div class="curr_griev">
+            {% for grievance in grievances %}
+                <div class="card" style="width: 18rem;margin:20px">
+                    <div class="card-body">
+                    <p class="card-text">Subject: {{grievance.subject}}</p>
+                    <p class="card-text">Description: {{grievance.description}}</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Created On: {{ grievance.created_on.strftime('%Y-%m-%d') }}</p>
+                        <p class="card-text">Status: {{grievance.status}}</p>
+                    </div>
+                    
+                    <div class="card-body">
+                        <a href="{{url_for('delete_grievance', grievance_id=grievance.grievance_id )}}" class="btn btn-danger">Delete</a>
+                    </div>
+                    
+                </div>
+            
+            {% endfor %}
+        </div>
+
+        
+        
+    </div>
+{% endblock %}
