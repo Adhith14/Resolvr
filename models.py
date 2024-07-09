@@ -24,9 +24,9 @@ class Grievance(db.Model):
 with app.app_context():
     db.create_all()
 
-    admin=User.query.filter_by(is_admin=True).first()
-    if not admin:
-        passwordhash = generate_password_hash('admin')
-        admin=User(username='admin',email='adhithkl2003@gmail.com',passhash=passwordhash,is_admin=True)
-        db.session.add(admin)
-        db.session.commit()
+    # admin=User.query.filter_by(is_admin=True).first()
+    # if not admin:
+    #     passwordhash = generate_password_hash('admin')
+    #     admin=User(username='admin',email='adhithkl2003@gmail.com',passhash=passwordhash,is_admin=True)
+    #     db.session.add(admin)
+    #     db.session.commit()

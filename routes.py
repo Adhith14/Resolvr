@@ -43,7 +43,8 @@ def login_post():
     password = request.form['password']
 
     user = User.query.filter_by(username=username).first()
-    if not user or not check_password_hash(user.passhash, password):
+    # if not user or not check_password_hash(user.passhash, password):
+    if not user or not (user.passhash==password):
         flash('Username or password is incorrect')
         return redirect(url_for('login'))
     
@@ -52,7 +53,11 @@ def login_post():
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    user_id = session.get('user_id')
+    user = None
+    if user_id:
+        user = User.query.get(user_id)
+    return render_template('register.html', user=None)
 
 @app.route('/register', methods=['POST'])
 def register_post():
@@ -76,7 +81,7 @@ def register_post():
     
     passhash = generate_password_hash(password)
 
-    new_user = User(username=username, email=email, passhash=passhash, is_admin=False)
+    new_user = User(username=username, email=email, passhash=password, is_admin=False)
     db.session.add(new_user)
     db.session.commit()
     return redirect(url_for('login'))
