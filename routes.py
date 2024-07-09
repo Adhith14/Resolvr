@@ -99,7 +99,7 @@ def profile():
     user_id = session.get('user_id')
     user = User.query.get(user_id)
     if user.is_admin:
-        return render_template('adminprofile.html', user=user)
+        return render_template('index.html', user=user)
     return render_template('index.html', user=user)
 
 @app.route('/grievance')

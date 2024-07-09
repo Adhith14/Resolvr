@@ -7,7 +7,13 @@
 {% block content %}
 
     <div class="home">
+        {% if user %}
+        <p>WELCOME {{user.username}}</p>
+
+        {% else %}
         <p>WELCOME</p>
+
+        {% endif %}
     </div>
     
 {% endblock %}
