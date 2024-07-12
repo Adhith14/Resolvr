@@ -1,2 +1,2 @@
-Grievance Redressal Web app using Pythn Flask
+#Grievance Redressal Web app using Python Flask.
 Website: https://resolvr-hoob.onrender.com
